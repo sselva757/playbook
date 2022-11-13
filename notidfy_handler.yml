@@ -1,0 +1,18 @@
+---
+
+- name: this playboook is install package
+  hosts: all
+  become: true
+  gather_facts: no
+  tasks:
+  - name: install a apache2
+    apt:
+      name: apache2
+      state: present
+    notify: start a apache service
+  handlers:
+  - name: start a apache service
+    service:
+      name: apache2
+      state: started
+

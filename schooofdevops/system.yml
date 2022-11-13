@@ -1,0 +1,24 @@
+---
+- name: playbook for installing packages and creating users
+  hosts: all
+  become: true
+  tasks:
+   - name: creating admin user
+     user:
+       name: admin
+       state: present
+   
+   - name: removing john user
+     user:
+       name: john
+       state: present
+       
+   - name: installing tree
+     apt: 
+       name: tree
+       state: present
+       
+   - name: installing ntp
+     apt: 
+       name: ntp
+       state: present

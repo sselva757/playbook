@@ -1,0 +1,9 @@
+---
+- name: this playbook is for installing packages
+  hosts: app
+  become: true
+  tasks:
+  - name: install package
+    apt:
+      name: git
+      state: latest

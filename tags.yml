@@ -1,0 +1,41 @@
+---
+- name: install a paackage based on os version
+  hosts: all
+  become: true
+  tasks:
+  - name: install yum packages
+    yum:
+      name: httpd
+      state: present
+    when: ansible_os_family == "RedHAT"
+    tags: Install_httpd
+
+  - name: start httpd service
+    service:
+      name: httpd
+      state: started
+    when: ansible_os_family == "REDHAT"
+    tags: Start_httpd
+
+  - name: install debian package
+    apt:
+      name: apache2
+      state: present
+    when: ansible_os_family == "Debian"
+    tags: Install_apache
+
+  - name: start a apache service
+    service:
+        name: apache2
+        state: started
+    when: ansible_os_family == "Debian"
+    tags: Start_apache
+
+  - name: copying index file
+    copy:
+      src: /home/ansadmin/playbooks/index.html
+      dest: /var/www/html
+      mode: 0666
+
+
+

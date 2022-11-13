@@ -1,0 +1,20 @@
+---
+- name: Create users and create files/dir in users home dir
+  hosts: all
+  tasks:
+   - name: Create multiple users
+     user:
+        name: "{{item.a}}"
+        password: "{{item.b}}"
+        home: "{{item.c}}"
+     with_items:
+        - {a: Farhan,b: durgasoft,c: /home/Farhan}
+        - {a: Ravi,b: durgasoft,c: /home/ubuntu/Ravi}
+   - name: creating files and directories in users home dir
+     file:
+        name: "{{item.a}}"
+        state: "{{item.b}}"
+     with_items:
+        - {a: /home/Farhan/file1,b: touch}
+        - {a: /home/ubuntu/Ravi/dir1,b: directory}
+...

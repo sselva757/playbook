@@ -1,0 +1,6 @@
+---
+- name: install and start apache service 
+  hosts: all
+  become: true
+  roles:
+     - apache

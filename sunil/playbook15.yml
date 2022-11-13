@@ -1,0 +1,24 @@
+---
+- name: Error handling
+  hosts: all
+  tasks:
+   - block:
+     - name: Install apache1
+       apt:
+        name: apache1
+        state: present
+     rescue:
+      - name: Install apache2
+        apt:
+          name: apache2
+          state: present
+     always:
+       - name: Check url response
+         uri:
+           url: "{{item}}"
+         with_items:
+          - http://172.42.42.101
+          - http://172.42.42.102
+          - http://172.42.42.103
+          #- http://172.31.44.14
+...

@@ -1,0 +1,19 @@
+---
+- name: Installing the git
+  hosts: all
+  become: true
+  tasks:
+    - name: install git
+      apt:
+         name: git
+         state: present
+         update_cache: yes
+
+    - name: cloning the repository
+      git:
+         repo: https://github.com/sunilkumark11/git-9am-batch.git
+         dest: /home/ansadmin/newgit
+
+...
+
+

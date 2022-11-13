@@ -1,0 +1,9 @@
+---
+- name: cloning git folder
+  hosts: all
+  become: true
+  tasks:
+  - name: cloning the git folder
+    git:
+      repo: "git clone https://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@github.com/sselva757/vault.git"
+      dest: /home/ansadmin/git

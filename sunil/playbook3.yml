@@ -1,0 +1,28 @@
+---
+- name: Configure tomcat8
+  hosts: all
+  tasks:
+     - name: Install tomcat8
+       apt:
+        name: tomcat9
+        state: present
+     - name: copy tomcat-users.xml file
+       copy:
+        src: /home/ansadmin/newfile1
+        dest: /etc/tomcat9
+     - name: change port of tomcat from 8080 to 9090
+       replace:
+        regexp: 8080
+        replace: 9090
+        path: /etc/tomcat8/server.xml
+     - name: restart tomcat9
+       service:
+        name: tomcat9
+        state: restarted
+     - name: check url response of server 1
+       uri:
+        url: http://172.42.42.102:9090
+     - name: check url response of server 2
+       uri:
+        url: http://172.42.42.103:9090
+...

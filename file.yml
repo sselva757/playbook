@@ -1,0 +1,9 @@
+---
+- name: this play is for creatin a file or dir
+  hosts: all
+  become: true
+  tasks:
+  - name: creating a file
+    file: 
+      path: /home/ansadmin/demofile
+      state: touch

@@ -1,0 +1,17 @@
+---
+- name: this pllaybook install multiples pacakages
+  hosts: all
+  become: true
+  tasks:
+  - name: install packages
+    apt:
+      #name: [git, gcc, make, telnet, gzip]
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - git
+      - gcc
+      - make
+      - telnet
+      - tree
+      - gzip

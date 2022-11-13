@@ -1,0 +1,10 @@
+---
+- name: install packages
+  hosts: all
+  become: true
+  tasks:
+  - name: install a multiple packages
+    apt:
+     name: [ git, make, gcc, telnet, tree, gzip]
+     state: present
+
